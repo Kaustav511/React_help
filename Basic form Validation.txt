@@ -1,0 +1,58 @@
+*React Form validation*(basic)
+------------------------
+ //import "./styles.css";
+import { useState } from "react";
+export default function App() {
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [nameError, setError] = useState("");
+  const [passError, setpError] = useState("");
+  const valid = () => {
+    if (!user.includes("@") && pass.length < 5) {
+      setError("invalid name");
+      setpError("password size must be 5");
+      return false;
+    } else if (!user.includes("@")) {
+      setError("invalid name");
+      return false;
+    } else if (pass.length < 5) {
+      setpError("password size must be 5");
+      return false;
+    }
+    return true;
+  };
+  const handelClick = () => {
+    setError("");
+    setpError("");
+    if (valid()) {
+      alert("hi i am submitted");
+      console.log(user);
+      console.log(pass);
+      setUser("");
+      setPass("");
+    }
+  };
+  return (
+    <div className="App">
+      <input
+        type="text"
+        name="text"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+      ></input>
+      <br />
+      <p>{nameError}</p>
+      <br />
+      <input
+        type="password"
+        name="pass"
+        value={pass}
+        onChange={(e) => setPass(e.target.value)}
+      ></input>
+      <br />
+      <p>{passError}</p>
+      <br />
+      <button onClick={() => handelClick()}>Click</button>
+    </div>
+  );
+}
