@@ -1,0 +1,29 @@
+Calling a API in function-based component->>
+-----------------------------------------
+import "./styles.css";
+import React, { useState, useEffect } from "react";
+export default function App() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch("https://reqres.in/api/users")
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result.data);
+      });
+
+    return () => {
+      console.log("component unmounted");
+    };
+  }, []);
+  return (
+    <div className="App">
+      {data
+        ? data.map((ele, i) => (
+            <div key={ele.email}>
+              {i} -- {ele.first_name}--{ele.last_name}--{ele.email}
+            </div>
+          ))
+        : null}
+    </div>
+  );
+}
