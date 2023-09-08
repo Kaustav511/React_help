@@ -1,0 +1,18 @@
+Listing with map function ->>
+-----------------------------
+import "./styles.css";
+import {useState} from 'react';
+export default function App() {
+  const [list,setList]=useState([
+    { name: 'anil', ph: '111', email: 'anil@test.com' },
+    { name: 'anil1', ph: '112', email: 'anil1@test.com' },
+    { name: 'anil2', ph: '123', email: 'anil2@test.com' }
+  ])
+  return (
+    <div className="App">
+      {list.map((ele)=>
+        <div>{ele.name},{ele.ph},{ele.email}</div>
+        )}
+    </div>
+  );
+}
